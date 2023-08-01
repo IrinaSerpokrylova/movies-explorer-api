@@ -6,10 +6,8 @@ const INVALID_ID = 'Невалидный id';
 const NOT_ENOUGH_RIGHTS = 'Недостаточно прав для удаления фильма';
 const MOVIE_NOT_FOUND = 'Фильм с указанным _id не найден';
 const EMAIL_IN_USE = 'Пользователь с таким email уже существует';
-const INVALID_USER_CREATION_DATA =
-  'Переданы некорректные данные при создании пользователя';
-const INVALID_USER_UPDATE_DATA =
-  'Переданы некорректные данные при обновлении профиля';
+const INVALID_USER_CREATION_DATA = 'Переданы некорректные данные при создании пользователя';
+const INVALID_USER_UPDATE_DATA = 'Переданы некорректные данные при обновлении профиля';
 
 module.exports = {
   INTERNAL_SERVER_ERROR,

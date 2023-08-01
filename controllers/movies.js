@@ -52,7 +52,8 @@ const createMovie = (req, res, next) => {
     .then((movie) => res.status(created).send(movie))
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
-        return next(new BadRequestError(INVALID_MOVIE_DATA));
+        next(new BadRequestError(INVALID_MOVIE_DATA));
+        return;
       }
       next(err);
     });

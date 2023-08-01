@@ -36,13 +36,11 @@ const createUser = (req, res, next) => {
 
   bcrypt
     .hash(req.body.password, 10)
-    .then((hash) =>
-      User.create({
-        name,
-        email,
-        password: hash,
-      }),
-    )
+    .then((hash) => User.create({
+      name,
+      email,
+      password: hash,
+    }))
     .then((user) => {
       res.status(created).send({
         data: {
@@ -69,12 +67,14 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   const secretKey = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
   const options = { expiresIn: '7d' };
-
+  console.log(secretKey);
   return User.findUserByCredentials(email, password)
     .then((user) => {
       // токен
+      console.log(user);
       const token = jwt.sign({ _id: user._id }, secretKey, options);
       // устанавливаем токен в куки, с httpOnly
+      console.log(token);
       res.cookie('token', token, {
         maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
@@ -99,7 +99,8 @@ const updateUserProfile = (req, res, next) => {
     })
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
-        return next(new BadRequestError(INVALID_USER_UPDATE_DATA));
+        next(new BadRequestError(INVALID_USER_UPDATE_DATA));
+        return;
       }
       next(err);
     });
