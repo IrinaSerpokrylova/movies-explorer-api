@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
-// const cors = require('cors');
+const cors = require('cors');
 const { errors } = require('celebrate');
 const errorHandler = require('./middlewares/error-handler');
 const routes = require('./routes');
@@ -27,18 +27,14 @@ mongoose
 
 const app = express();
 
-// app.use(
-//   cors({
-//     origin: [
-//       'https://melomori.nomoredomains.xyz',
-//       'https://api.melomori.nomoredomains.xyz',
-//       'http://melomori.nomoredomains.xyz',
-//       'http://api.melomori.nomoredomains.xyz',
-//       'http://localhost:3000',
-//     ],
-//     credentials: true,
-//   }),
-// );
+app.use(
+  cors({
+    // origin: [
+    //   'http://localhost:3000',
+    // ],
+    credentials: true,
+  }),
+);
 
 app.use(bodyParser.json());
 app.use(cookieParser());
