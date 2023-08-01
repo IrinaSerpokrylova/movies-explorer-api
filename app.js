@@ -9,7 +9,6 @@ const { errors } = require('celebrate');
 const errorHandler = require('./middlewares/error-handler');
 const routes = require('./routes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-// const NotFoundError = require('./utils/errors/not-found-error');
 
 const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process.env;
 

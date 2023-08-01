@@ -15,14 +15,6 @@ const {
   INVALID_USER_UPDATE_DATA,
 } = require('../utils/statusMessages');
 
-// const getUsers = (req, res, next) => {
-//   User.find({})
-//     .then((users) => {
-//       res.status(statusOK).send(users);
-//     })
-//     .catch(next);
-// };
-
 const getUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
@@ -85,16 +77,21 @@ const login = (req, res, next) => {
 };
 
 const updateUserProfile = (req, res, next) => {
-  const { name } = req.body;
+  const { email, name } = req.body;
   User.findByIdAndUpdate(
     req.user._id,
-    { name },
+    { email, name },
     { new: true, runValidators: true },
   )
     .then((user) => {
       res.status(statusOK).send(user);
     })
     .catch((err) => {
+      if (err.code === 11000) {
+        next(new ConflictError(EMAIL_IN_USE));
+        return;
+      }
+
       if (err instanceof mongoose.Error.ValidationError) {
         next(new BadRequestError(INVALID_USER_UPDATE_DATA));
         return;
