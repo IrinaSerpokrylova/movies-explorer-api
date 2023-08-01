@@ -67,19 +67,16 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   const secretKey = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
   const options = { expiresIn: '7d' };
-  console.log(secretKey);
   return User.findUserByCredentials(email, password)
     .then((user) => {
       // токен
-      console.log(user);
       const token = jwt.sign({ _id: user._id }, secretKey, options);
       // устанавливаем токен в куки, с httpOnly
-      console.log(token);
       res.cookie('token', token, {
         maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
         sameSite: 'None',
-        secure: true,
+        // secure: true,
       });
       res.status(200);
       res.send({ mesage: 'Signed in' });

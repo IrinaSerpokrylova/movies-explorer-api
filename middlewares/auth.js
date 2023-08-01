@@ -5,7 +5,7 @@ const UnauthorizedError = require('../utils/errors/unauthorized-error');
 
 module.exports = (req, res, next) => {
   const secretKey = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
-  console.log(req.cookies);
+  // console.log(req.cookies);
   if (!req.cookies.token) {
     throw new UnauthorizedError('Необходима авторизация');
   }
