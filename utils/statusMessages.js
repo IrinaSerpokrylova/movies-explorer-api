@@ -8,6 +8,7 @@ const MOVIE_NOT_FOUND = 'Фильм с указанным _id не найден'
 const EMAIL_IN_USE = 'Пользователь с таким email уже существует';
 const INVALID_USER_CREATION_DATA = 'Переданы некорректные данные при создании пользователя';
 const INVALID_USER_UPDATE_DATA = 'Переданы некорректные данные при обновлении профиля';
+const AUTHORIZATION_REQUIRED = 'Необходима авторизация';
 
 module.exports = {
   INTERNAL_SERVER_ERROR,
@@ -20,4 +21,5 @@ module.exports = {
   EMAIL_IN_USE,
   INVALID_USER_CREATION_DATA,
   INVALID_USER_UPDATE_DATA,
+  AUTHORIZATION_REQUIRED,
 };

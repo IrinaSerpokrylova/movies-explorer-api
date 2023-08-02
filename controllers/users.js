@@ -7,7 +7,6 @@ const User = require('../models/user');
 
 const { statusOK, created } = require('../utils/statuses');
 const BadRequestError = require('../utils/errors/bad-request-error');
-// const NotFoundError = require('../utils/errors/not-found-error');
 const ConflictError = require('../utils/errors/conflict-error');
 const {
   EMAIL_IN_USE,
@@ -101,7 +100,6 @@ const updateUserProfile = (req, res, next) => {
 };
 
 module.exports = {
-  // getUsers,
   getUser,
   createUser,
   updateUserProfile,
