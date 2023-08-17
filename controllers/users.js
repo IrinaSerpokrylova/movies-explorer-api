@@ -33,6 +33,7 @@ const createUser = (req, res, next) => {
       password: hash,
     }))
     .then((user) => {
+      console.log(user);
       res.status(created).send({
         data: {
           name: user.name,
@@ -58,10 +59,13 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   const secretKey = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
   const options = { expiresIn: '7d' };
+  console.log(req.body);
+
   return User.findUserByCredentials(email, password)
     .then((user) => {
       // токен
       const token = jwt.sign({ _id: user._id }, secretKey, options);
+      console.log(token);
       // устанавливаем токен в куки, с httpOnly
       res.cookie('token', token, {
         maxAge: 24 * 60 * 60 * 1000,
