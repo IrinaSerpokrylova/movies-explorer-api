@@ -25,7 +25,9 @@ router.post('/signin', validateLogin, login);
 router.use(auth);
 
 router.get('/signout', (req, res) => {
-  res.clearCookie('token').send({ message: 'Signed out' });
+  res.clearCookie('token', {
+    sameSite: 'None',
+  }).send({ message: 'Signed out' });
 });
 
 router.use('/users', userRoutes);
