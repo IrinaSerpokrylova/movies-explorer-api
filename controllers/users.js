@@ -71,7 +71,7 @@ const login = (req, res, next) => {
         maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
         sameSite: 'None',
-        // secure: true,
+        secure: true,
       });
       res.status(200);
       res.send({ mesage: 'Signed in' });
