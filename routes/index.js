@@ -27,6 +27,7 @@ router.use(auth);
 router.get('/signout', (req, res) => {
   res.clearCookie('token', {
     sameSite: 'None',
+    secure: true,
   }).send({ message: 'Signed out' });
 });
 
