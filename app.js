@@ -10,7 +10,8 @@ const errorHandler = require('./middlewares/error-handler');
 const routes = require('./routes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process.env;
+const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/bitfilmsdb' } =
+  process.env;
 
 const limiter = require('./utils/limiter');
 
@@ -30,6 +31,10 @@ app.use(
   cors({
     origin: [
       'http://localhost:3000',
+      'https://movies.melomori.nomoredomainsicu.ru',
+      'http://movies.melomori.nomoredomainsicu.ru',
+      'http://api.movies.melomori.nomoreparties.co',
+      'https://api.movies.melomori.nomoreparties.co',
     ],
     credentials: true,
   }),
